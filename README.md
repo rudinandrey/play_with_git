@@ -78,3 +78,29 @@ Fast-forward
  
  Но что самое интересное, это когда надо что-то отменить, вернуть, то что было испорчено.
  
+ Теперь я добавил на страницу HTML неправильный номер телефона:
+
+лог файл выглядит так, неправильный телефон у нас находится в коммите `35c287f` нам надо его исправить. Это можно сделать легко.
+
+```
+$ git log --oneline --graph --all
+*   817dff2 (HEAD -> master, origin/master) Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 83c4092 Update README.md
+| * f7d32ef Update README.md
+| * c0b2da8 Update README.md
+* | 35c287f add phone number
+* | 0665a04 (origin/dev, dev) add button into the bottom of page
+|/
+* 74881ec Update README.md
+*   e04c53e Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 36b57b2 Update README.md
+* |   e667d65 Merge remote-tracking branch 'origin/master'
+|\ \
+| |/
+| * ea412cd Update README.md
+| * 989f105 Initial commit
+* a603835 start commit
+```
+
