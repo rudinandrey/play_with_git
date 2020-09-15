@@ -64,3 +64,17 @@ $ git log --oneline --graph --all
 ```
 
 все выглядит пока так. Чтобы слить изменения в master, нам надо переключиться в master командой `git checkout master` и слить изменения из dev командой `git merge dev`
+
+Для `merge` использовался метод Fast Forward
+```
+ git merge dev
+Updating 74881ec..0665a04
+Fast-forward
+ index.html | 4 ++++
+ 1 file changed, 4 insertions(+)
+ ```
+ 
+ так что в git log ничего интересного не появилось.
+ 
+ Но что самое интересное, это когда надо что-то отменить, вернуть, то что было испорчено.
+ 
