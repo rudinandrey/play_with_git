@@ -41,3 +41,66 @@ By default, git merge command refuses to merge histories that do not share a com
 По умолчанию команда git merge отказывается объединять истории, не имеющие общего предка. Этот параметр можно использовать для отмены этой безопасности при объединении историй двух проектов, которые начали свою жизнь независимо. Поскольку это очень редкий случай, конфигурационная переменная для включения этого по умолчанию не существует и не будет добавлена.
 
 Достаточно редкий случай. Скорее всего потому что чаще пользуются git pull. Ладно примем во внимание и пойдем дальше.
+
+создали `git checkout -b dev` новую ветку.
+
+добавили в файл index.html какой то текст. и сделал `git add . && git commit -m "..." && git push origin dev `
+
+в удаленном репозитории создалась ветка origin/dev которую github сразу предложил слить в master, но мы этого делать пока не будем.
+
+```
+$ git log --oneline --graph --all
+* 0665a04 (HEAD -> dev, origin/dev) add button into the bottom of page
+* 74881ec (origin/master, master) Update README.md
+*   e04c53e Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 36b57b2 Update README.md
+* |   e667d65 Merge remote-tracking branch 'origin/master'
+|\ \
+| |/
+| * ea412cd Update README.md
+| * 989f105 Initial commit
+* a603835 start commit
+```
+
+все выглядит пока так. Чтобы слить изменения в master, нам надо переключиться в master командой `git checkout master` и слить изменения из dev командой `git merge dev`
+
+Для `merge` использовался метод Fast Forward
+```
+ git merge dev
+Updating 74881ec..0665a04
+Fast-forward
+ index.html | 4 ++++
+ 1 file changed, 4 insertions(+)
+ ```
+ 
+ так что в git log ничего интересного не появилось.
+ 
+ Но что самое интересное, это когда надо что-то отменить, вернуть, то что было испорчено.
+ 
+ Теперь я добавил на страницу HTML неправильный номер телефона:
+
+лог файл выглядит так, неправильный телефон у нас находится в коммите `35c287f` нам надо его исправить. Это можно сделать легко.
+
+```
+$ git log --oneline --graph --all
+*   817dff2 (HEAD -> master, origin/master) Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 83c4092 Update README.md
+| * f7d32ef Update README.md
+| * c0b2da8 Update README.md
+* | 35c287f add phone number
+* | 0665a04 (origin/dev, dev) add button into the bottom of page
+|/
+* 74881ec Update README.md
+*   e04c53e Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 36b57b2 Update README.md
+* |   e667d65 Merge remote-tracking branch 'origin/master'
+|\ \
+| |/
+| * ea412cd Update README.md
+| * 989f105 Initial commit
+* a603835 start commit
+```
+
