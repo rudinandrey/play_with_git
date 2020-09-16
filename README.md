@@ -104,3 +104,61 @@ $ git log --oneline --graph --all
 * a603835 start commit
 ```
 
+мы это легко сделали.
+
+```
+$ git log --oneline --graph --all
+* df369cb (HEAD -> master, origin/master) change phone number
+* 6800f76 Update README.md
+*   817dff2 Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 83c4092 Update README.md
+| * f7d32ef Update README.md
+| * c0b2da8 Update README.md
+* | 35c287f add phone number
+* | 0665a04 (origin/dev, dev) add button into the bottom of page
+|/
+* 74881ec Update README.md
+*   e04c53e Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 36b57b2 Update README.md
+* |   e667d65 Merge remote-tracking branch 'origin/master'
+|\ \
+| |/
+| * ea412cd Update README.md
+| * 989f105 Initial commit
+* a603835 start commit
+```
+а теперь нам надо вернуть его из `35c287f` комиита, т.е. надо восстановить телефон. Нам как то надо переместить указатель HEAD на нужный нам коммит, посмотреть телефон и вернуться на master и переписать телефон.
+
+Делаем команду: 
+```$ git reset --hard 35c287f
+HEAD is now at 35c287f add phone number
+```
+наш лог выглядит так:
+```
+$ git log --oneline --graph --all
+* df369cb (origin/master) change phone number
+* 6800f76 Update README.md
+*   817dff2 Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 83c4092 Update README.md
+| * f7d32ef Update README.md
+| * c0b2da8 Update README.md
+* | 35c287f (HEAD -> master) add phone number
+* | 0665a04 (origin/dev, dev) add button into the bottom of page
+|/
+* 74881ec Update README.md
+*   e04c53e Merge branch 'master' of github.com:rudinandrey/play_with_git
+|\
+| * 36b57b2 Update README.md
+* |   e667d65 Merge remote-tracking branch 'origin/master'
+|\ \
+| |/
+| * ea412cd Update README.md
+| * 989f105 Initial commit
+* a603835 start commit
+```
+т.е. мы видим что наш мастер сейчас указывает на коммит `35c287f` как же нам вернуться обратно на `df369cb` ???
+
+А точно так же `git reset --hard df369cb` и мы там где были в последний раз.
